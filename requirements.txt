@@ -1,0 +1,13 @@
+# API runtime
+fastapi==0.136.0
+uvicorn==0.44.0
+pydantic==2.13.3
+pglast==7.13
+
+# Tests
+pytest==9.0.3
+pytest-cov==7.1.0
+
+# Load tests (locust)
+locust==2.44.0
+gevent==25.9.1

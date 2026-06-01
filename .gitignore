@@ -1,0 +1,32 @@
+# ---- Python ----
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# ---- .NET ----
+[Bb]in/
+[Oo]bj/
+*.user
+*.suo
+*.DotSettings.user
+
+# ---- IDE ----
+.idea/
+.vs/
+*.iml
+
+# ---- Load test reports / archives ----
+tests/SqlTranslator.Api/load/reports/
+*.rar
+*.zip
+
+# ---- OS ----
+Thumbs.db
+.DS_Store

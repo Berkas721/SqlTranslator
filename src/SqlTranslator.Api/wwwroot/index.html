@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SQL Translator — PostgreSQL → ClickHouse</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ── Header ─────────────────────────────────────────────────────────────── -->
+<header class="site-header">
+  <h1>SQL Translator</h1>
+  <span class="dialect-badge">PostgreSQL → ClickHouse</span>
+</header>
+
+<!-- ── Main ───────────────────────────────────────────────────────────────── -->
+<div class="main">
+
+  <!-- Error bar (hidden by default) -->
+  <div class="error-bar" id="error-bar">
+    <svg width="15" height="15" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm-.75-11.25a.75.75 0 011.5 0v5.5a.75.75 0 01-1.5 0v-5.5zm.75 8.5a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/>
+    </svg>
+    <span id="error-msg"></span>
+  </div>
+
+  <!-- Two editor panels -->
+  <div class="panels">
+
+    <!-- Left: PostgreSQL input -->
+    <div class="panel">
+      <div class="panel-bar">
+        <span class="panel-dot dot-pg"></span>
+        <span class="panel-label">PostgreSQL — исходный запрос</span>
+      </div>
+      <textarea id="sql-in"
+        placeholder="Введите SQL-запрос PostgreSQL&#x2026;&#10;&#10;Пример:&#10;SELECT id, name FROM users WHERE active = TRUE;"
+        spellcheck="false" autocorrect="off" autocapitalize="off"
+      ></textarea>
+    </div>
+
+    <!-- Right: ClickHouse output -->
+    <div class="panel" id="out-panel">
+      <div class="panel-bar">
+        <span class="panel-dot dot-ch"></span>
+        <span class="panel-label">ClickHouse — результат</span>
+      </div>
+      <div class="out-wrap">
+        <div id="sql-out" class="empty"></div>
+      </div>
+    </div>
+
+  </div><!-- .panels -->
+
+  <!-- Convert button -->
+  <div class="btn-bar">
+    <button id="btn-run">
+      <span class="spinner"></span>
+      Конвертировать
+    </button>
+  </div>
+
+</div><!-- .main -->
+
+<!-- ── Footer / help ──────────────────────────────────────────────────────── -->
+<footer class="site-footer">
+  <p class="help-title">О сервисе</p>
+  <div class="help-body">
+    <p>
+      Сервис автоматически преобразует SQL-запросы из диалекта <strong>PostgreSQL</strong>
+      в диалект <strong>ClickHouse</strong>. Вставьте исходный запрос в левое поле
+      и нажмите «Конвертировать».
+    </p>
+    <p>
+      В правом окне появится результат. Фрагменты, требующие внимания, выделены цветом —
+      наведите курсор на фрагмент, чтобы увидеть пояснение.
+    </p>
+    <div class="legend">
+      <div class="legend-item">
+        <span class="swatch" style="background:#fff2be"></span>
+        Семантические изменения (C / D)
+      </div>
+      <div class="legend-item">
+        <span class="swatch" style="background:#ffd6d6"></span>
+        Неподдерживаемые конструкции (E)
+      </div>
+      <div class="legend-item">
+        <span class="swatch" style="background:#e5e7eb"></span>
+        Неизвестный синтаксис (F)
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ── Tooltip (appended to body, positioned via JS) ─────────────────────── -->
+<div id="tooltip"></div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
